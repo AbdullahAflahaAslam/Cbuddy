@@ -25,6 +25,25 @@
 				return 0;
 			}
 		}
+		function forgetpass(){
+			$user = $this->input->post('user');
+			$email = $this->input->post('email');
+			$this->db->select('email');
+			$this->db->where('user', $user);
+			$data = $this->db->get('user')->row();
+
+			if (!empty($data->email)){
+				if($email == $data->email){
+					return 1;
+				}
+				else {
+					return 0;
+				}
+			}
+			else {
+				return 0;
+			}
+		}
 
 		function namaUser(){
 			$pass = $this->input->post('pass');
@@ -74,6 +93,22 @@
 				return 0;
 			}
 		}
+		function getPass(){
+			$email = $this->input->post('email');
+			$user = strtoupper($this->input->post('user'));
+			$this->db->select('*');
+			$this->db->where('user', $user);
+			$query = $this->db->get('user')->row();
+			if (!empty($query->email)) {
+				if ($email == $query->email) {
+					return $query->pass;
+				} else {
+					return 0;
+				}
+			} else {
+				return 0;
+			}
+		}
 		function save(){
 			$data = array(
 				'FName' => $this->input->post('form_firstname'),
@@ -107,6 +142,29 @@
 			return $this->db->get('user');
 		}
 
+
+		function sendMail($email,$pesan){
+			$config = Array(
+				'protocol' => 'smtp',  
+			    'smtp_host' => 'ssl://smtp.googlemail.com',  
+			    'smtp_port' => 465,  
+			    'smtp_user' => 'ictte@fkip.uns.ac.id',   
+			    'smtp_pass' => 'ictte2017',   
+			    'mailtype' => 'html',   
+			    'charset' => 'iso-8859-1'
+			);
+			$this->load->library('email', $config);  
+			$this->email->set_newline("\r\n");  
+			$this->email->from('ictte@fkip.uns.ac.id', 'Admin ICTTE FKIP UNS 2018');   
+			$this->email->to($email);   
+			$this->email->subject('THE 4th ICTTE FKIP UNS');   
+			$this->email->message($pesan);  
+			if (!$this->email->send()) {  
+		    	show_error($this->email->print_debugger());   
+			}else{  
+			    echo 'Success to send email';   
+			}  
+		}
 
 	}
 

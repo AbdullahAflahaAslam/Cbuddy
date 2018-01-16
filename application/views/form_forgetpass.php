@@ -30,31 +30,29 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form method="POST" action="<?php echo base_url() ?>index.php/auth/login" >
-              <h1>Login Form</h1>
+           <form method="POST" action="<?php echo base_url() ?>index.php/ForgetPass">
+              <h1>Forget Password</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" id="username" name="user"  />
+                <input type="text" class="form-control" placeholder="Username" required="" name="user" />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required=""  id="password" name="pass"/>
+                <input type="text" class="form-control" placeholder="Email" required="" name="email" />
               </div>
               <div>
-                
-                <input type="submit" name="login" value="Login" class="btn btn-default submit" />
-                <a class="reset_pass" href="<?php echo base_url() ?>index.php/ForgetPass">Forget your password?</a>
+                <input type="submit" name="submit" value="Submit" class="btn btn-default submit" />
               </div>
+
               <div class="clearfix"></div>
 
               <div class="separator">
-                <p class="change_link">
-                 <a href="<?php echo base_url(); ?>index.php/auth/input" class="to_register"> Create Account </a>
+                <p class="change_link">Already remember your password ?
+                  <a href="<?php echo base_url() ?>index.php/auth/login" class="to_register"> Log in </a>
                 </p>
 
                 <div class="clearfix"></div>
                 <br />
 
                 <div>
-                  <h1><i class=""></i> </h1>
                   <p>©2018 All Rights Reserved. THE4 ICCTE FKIP UNS.</p>
                 </div>
               </div>

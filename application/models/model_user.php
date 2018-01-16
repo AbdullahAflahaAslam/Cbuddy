@@ -10,6 +10,10 @@
 			$this->db->where('id_user',$id);
 			return $this->db->get('user');
 		}
+		function getUser($user){
+			$this->db->where('user',$user);
+			return $this->db->get('user');
+		}
 		function getAbs($id){
 			$this->db->select('*');
 			$this->db->from('abstract');
