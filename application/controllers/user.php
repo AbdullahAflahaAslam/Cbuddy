@@ -24,6 +24,17 @@
 				redirect(base_url()."index.php/user");
 			} else {
 			$data['now'] = date('Y-m-d');
+			$this->template->load('templateUsr','abstract/input',$data);
+			}
+		}
+
+		function inputAttend(){
+			if (isset($_POST['add'])) {
+				$this->model_user->Update();
+				$this->model_user->updateStatus();
+				redirect(base_url()."index.php/user");
+			} else {
+			$data['now'] = date('Y-m-d');
 			$this->template->load('templateUsr','abstract/input_attend',$data);
 			}
 		}
