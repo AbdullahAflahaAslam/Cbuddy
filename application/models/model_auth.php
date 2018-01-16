@@ -2,6 +2,7 @@
 
 	class Model_auth extends CI_model
 	{
+		////untuk mengambil semua data negara dan phone code
 		function getAll(){
 			return $this->db->get('country');
 		}
@@ -15,16 +16,41 @@
 
 			if (!empty($data->pass)){
 				if($pass == $data->pass){
-					return 1;
+					
+					return 2;
 				}
 				else {
 					return 0;
 				}
 			}
 			else {
+				return 1;
+			}
+		}
+
+		function CekEmail(){
+			$user = $this->input->post('form_username');
+			$email = $this->input->post('email');
+			$this->db->select('email');
+			$this->db->where('user', $user);
+			$data = $this->db->get('user')->row();
+
+			if (!empty($data->email)){
+				if($email == $data->email){
+					return 2;
+				}
+				else {
+					return 1;
+				}
+			}
+			else {
 				return 0;
 			}
 		}
+
+
+
+		/// untuk mengecek apakah email ada di database atau tidak
 		function forgetpass(){
 			$user = $this->input->post('user');
 			$email = $this->input->post('email');
@@ -45,6 +71,8 @@
 			}
 		}
 
+
+		////untuk mengambil nama user
 		function namaUser(){
 			$pass = $this->input->post('pass');
 			$user = strtoupper($this->input->post('user'));
@@ -61,6 +89,8 @@
 				return 0;
 			}
 		}
+
+		///untuk mengambil status user
 		function status(){
 			$pass = $this->input->post('pass');
 			$user = strtoupper($this->input->post('user'));
@@ -77,6 +107,10 @@
 				return 0;
 			}
 		}
+
+
+
+		///untuk mengambil id dan dijadikan session
 		function sesId(){
 			$pass = $this->input->post('pass');
 			$user = strtoupper($this->input->post('user'));
@@ -93,6 +127,9 @@
 				return 0;
 			}
 		}
+
+
+		///untuk mendapat pass dan dikirim email
 		function getPass(){
 			$email = $this->input->post('email');
 			$user = strtoupper($this->input->post('user'));
@@ -109,6 +146,8 @@
 				return 0;
 			}
 		}
+
+		////save data register account
 		function save(){
 			$data = array(
 				'FName' => $this->input->post('form_firstname'),
@@ -137,12 +176,14 @@
 				'status' => $this->input->post('status'));
 			$this->db->insert('user', $data);
 		}
+
+		////mendapat data dari id 
 		function getID($id){
 			$this->db->where('id_user',$id);
 			return $this->db->get('user');
 		}
 
-
+		/////mengirim email
 		function sendMail($email,$pesan){
 			$config = Array(
 				'protocol' => 'smtp',  
@@ -162,7 +203,7 @@
 			if (!$this->email->send()) {  
 		    	show_error($this->email->print_debugger());   
 			}else{  
-			    echo 'Success to send email';   
+			    echo '<script>alert ("Data Account has been sent email")</script>';
 			}  
 		}
 
