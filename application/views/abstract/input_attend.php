@@ -2,7 +2,7 @@
 	<label>Registration of Attendance</label>
     <p>Please verify the name expected tobe in your certificate<p>
 	<div class="white-box">
-	<form class="form-horizontal form-material" method="post" action="input">
+	<form class="form-horizontal form-material" method="post" action="inputAttend">
 		<div class="form-group">
             <label class="col-md-12">First Name *</label>
             <div class="col-md-5">

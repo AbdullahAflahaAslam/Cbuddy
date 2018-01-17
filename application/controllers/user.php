@@ -17,6 +17,16 @@
 		$this->template->load('templateUsr','ShowPerson',$data);
 		}
 
+		function tes(){
+			redirect($_SERVER['REQUEST_URI'], 'refresh'); 
+		}
+
+		function detail_abstract(){
+			$id=$this->uri->segment(3);
+			$data['abstract'] = $this->model_user->getAbsID($id);
+			$this->template->load('templateUsr','abstract/abstract_id',$data);
+		}
+
 		function input(){
 			if (isset($_POST['add'])) {
 				$this->model_user->save();
@@ -37,6 +47,25 @@
 			$data['now'] = date('Y-m-d');
 			$this->template->load('templateUsr','abstract/input_attend',$data);
 			}
+		}
+
+		function uploadFullPaper(){
+			$config['upload_path']          = './file/';
+            $config['allowed_types']        = 'doc|docv';
+            $config['max_size']             = 10000;
+
+            $this->load->library('upload', $config);
+
+
+            if (!$this->upload->do_upload('payment')) {
+            	$error = array('error' => $this->upload->display_errors());
+
+            	redirect($this->uri->uri_string());
+            } else {
+            	$data = array('upload_data' => $this->upload->data());
+
+                $this->load->view('success', $data);
+            }
 		}
 /*		function uploadFile(){
 		    $data = array();

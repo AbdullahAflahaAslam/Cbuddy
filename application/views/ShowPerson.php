@@ -78,7 +78,7 @@
 		<a href="<?php echo base_url(); ?>index.php/user/input" class="btn btn-success">Submition</a>
 		</td>
 		<td>
-		<a href="<?php echo base_url(); ?>index.php/user/register" class="btn btn-success">Registration</a>
+		<a href="<?php echo base_url(); ?>index.php/user/input_attend" class="btn btn-success">Registration</a>
 		</td>
 	</tr>
 </table>
@@ -103,7 +103,7 @@
     					echo "<td> Title <b>".$row1->judul."</b>
     							<p>Author(s)".$row->user."</p></td>";
     					echo "<td>".$row1->tanggal."</td>";
-    					echo "<td>Show abstract</td>";
+    					echo "<td><a href=".base_url().'user/detail_abstract/'.$row1->id_judul.">Show abstract</a></td>";
     			echo "</tr>";
 
     			} ?>

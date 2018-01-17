@@ -10,10 +10,6 @@
 			$this->db->where('id_user',$id);
 			return $this->db->get('user');
 		}
-		function getUser($user){
-			$this->db->where('user',$user);
-			return $this->db->get('user');
-		}
 		function getAbs($id){
 			$this->db->select('*');
 			$this->db->from('abstract');
@@ -21,6 +17,15 @@
 			$this->db->order_by('id_judul', 'asc');
 			$query = $this->db->get();
 			return $query->result();
+		}
+
+		function getAbsID($id){
+			$this->db->select('*');
+			$this->db->from('abstract');
+			$this->db->where('id_judul',$id);
+			$this->db->order_by('id_judul', 'asc');
+			$query = $this->db->get();
+			return $query;
 		}
 
 		function namaUser(){
@@ -65,6 +70,14 @@
 				'status_recv' => $this->input->post('status_recv'),
 				'id_user' => $this->input->post('id_user'));
 			$this->db->insert('abstract', $data);
+		}
+
+		function updateAbstract(){
+			$data = array(
+				'status_recv' => 2,
+				'file_name' => $this->input->post('filename'));
+			$this->db->where('id_judul', $this->input->post('id_judul'));
+			$this->db->update('abstract', $data);
 		}
 		function updateStatus(){
 			$data = array(

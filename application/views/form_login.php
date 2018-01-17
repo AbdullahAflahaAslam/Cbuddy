@@ -24,7 +24,7 @@
 
   <body class="login">
     <div>
-      <a class="hiddenanchor" id="forget"></a>
+      <a class="hiddenanchor" id="signup"></a>
       <a class="hiddenanchor" id="signin"></a>
 
       <div class="login_wrapper">
@@ -41,7 +41,7 @@
               <div>
                 
                 <input type="submit" name="login" value="Login" class="btn btn-default submit" />
-                <a class="reset_pass" href="<?php echo base_url() ?>index.php/ForgetPass">Forget your password?</a>
+                <a class="reset_pass" href="#">Forget your password?</a>
               </div>
               <div class="clearfix"></div>
 
@@ -61,7 +61,6 @@
             </form>
           </section>
         </div>
-
       </div>
     </div>
   </body>
